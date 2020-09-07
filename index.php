@@ -18,10 +18,11 @@ if (!is_object($USER))
 if(!in_array(1, $USER -> GetUserGroupArray())) exit();
 
 function getWhatToDo(){
+    $startWeek = date("d.m.Y", strtotime("last Monday"));
     $result = array();
     $fSections = CIBlockSection::GetList(
         false,
-        Array("IBLOCK_ID" => 16, ">=UF_SEO_DATE" => date("d.m.Y", strtotime("last Monday")) . " 00:00:00", "UF_SEO" => FALSE,),
+        Array("IBLOCK_ID" => 16, ">=UF_SEO_DATE" => ConvertDateTime($startWeek, "YYYY-MM-DD")." 00:00:00", "UF_SEO" => FALSE,),
         false,
         Array("ID", "NAME", "UF_SEO", "UF_SEO_DATE", "UF_SEACRH_TITLE", "DEPTH_LEVEL",),
         false
