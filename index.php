@@ -15,7 +15,7 @@ global $USER, $APPLICATION;
 if (!is_object($USER))
     $USER = new CUser;
 
-if(!in_array(1, $USER -> GetUserGroupArray())) exit();
+if(!in_array(222, $USER -> GetUserGroupArray())) exit();
 
 ?>
 <form method="post">
