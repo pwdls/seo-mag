@@ -15,8 +15,26 @@ global $USER, $APPLICATION;
 if (!is_object($USER))
     $USER = new CUser;
 
-if(!in_array(222, $USER -> GetUserGroupArray())) exit();
+if(!in_array(1, $USER -> GetUserGroupArray())) exit();
 
+function getWhatToDo(){
+    $result = array();
+    $fSections = CIBlockSection::GetList(
+        false,
+        Array("IBLOCK_ID" => 16, ">=UF_SEO_DATE" => date("d.m.Y", strtotime("last Monday")) . " 00:00:00", "UF_SEO" => FALSE,),
+        false,
+        Array("ID", "NAME", "UF_SEO", "UF_SEO_DATE", "UF_SEACRH_TITLE", "DEPTH_LEVEL",),
+        false
+    );
+    while ($flSections = $fSections->Fetch()) {
+        $result[] = $flSections;
+    }
+    return $result;
+}
+
+echo '<pre>';
+var_dump(getWhatToDo());
+echo '</pre>';
 ?>
 <form method="post">
     <div>
