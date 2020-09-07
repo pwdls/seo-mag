@@ -18,7 +18,7 @@ if (!is_object($USER))
 if(!in_array(1, $USER -> GetUserGroupArray())) exit();
 
 function getWhatToDo(){
-    $startWeek = date("d.m.Y", strtotime("last Monday"));
+    $startWeek = date("d.m.Y", strtotime("next Monday"));
     $result = array();
     $fSections = CIBlockSection::GetList(
         false,
